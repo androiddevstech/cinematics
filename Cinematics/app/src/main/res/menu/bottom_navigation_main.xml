@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_movies"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Movies"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_tvshows"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_send"
+        android:title="TV Shows"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_celeb"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Near By"
+        app:showAsAction="ifRoom" />
+
+</menu>

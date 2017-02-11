@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Cinematics.iml" filepath="$PROJECT_DIR$/Cinematics.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/databasemodule/databasemodule.iml" filepath="$PROJECT_DIR$/databasemodule/databasemodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/networkmodule/networkmodule.iml" filepath="$PROJECT_DIR$/networkmodule/networkmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uimodule/uimodule.iml" filepath="$PROJECT_DIR$/uimodule/uimodule.iml" />
     </modules>
   </component>
 </project>

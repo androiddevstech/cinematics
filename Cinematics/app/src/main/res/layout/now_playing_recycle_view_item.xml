@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="130dp"
+    android:layout_height="200dp">
+<LinearLayout
+    android:layout_width="130dp"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/now_playing_padding_carousel"
+    android:background="@drawable/rect">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/nowPlayingImageView"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
+</LinearLayout>
+</LinearLayout>

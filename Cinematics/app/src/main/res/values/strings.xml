@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">Cinematics</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favourites</string>
+    <string name="action_more_info">More Info</string>
+    <string name="backdrop_title">LOVE MUSIC</string>
+    <string name="backdrop_subtitle">This season top 20 albums</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_tvshows">TVShows</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_sample">SampleActivity</string>
+    <string name="title_activity_fab">FabActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
+    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
+    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
+    </color>
+
+    <string-array name="movie_toolbar_hint_array">
+        <item>Upcoming Movies</item>
+        <item>Popular Movies</item>
+        <item>My Favourites</item>
+        <item>Search for Movies…</item>
+    </string-array>
+
 </resources>

@@ -1,0 +1,13 @@
+package com.cinematics.santosh.networkmodule.pojos.model;
+
+import java.util.List;
+
+
+public class MoviesTVCastingModel {
+    public List<Cast> cast;
+
+    public static class Cast {
+        public String character;
+        public String name;
+    }
+}
