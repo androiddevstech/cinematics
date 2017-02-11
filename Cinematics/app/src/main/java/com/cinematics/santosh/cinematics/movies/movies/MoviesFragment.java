@@ -53,7 +53,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
 
         mBinding.swipeRefreshLayout.setColorSchemeColors(0xFFB71C1C, 0xFF1A237E, 0xFF2E7D32);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new MoviesAdapter(getContext(),mBinding.recyclerView);
+        mAdapter = new MoviesAdapter(getContext(),mBinding.recyclerView,this);
         mBinding.recyclerView.setAdapter(mAdapter);
 
         mBinding.swipeRefreshLayout.setOnRefreshListener(this);
@@ -115,7 +115,6 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
         }
         //  HANDLES PAGINATION REQUESTS
         else {
-            Toast.makeText(getActivity(), "PAGE " + mPageNumber, Toast.LENGTH_SHORT).show();
             int startIndex = mOldResponse.results.size(), totalItems = response.body().results.size();
             mOldResponse.page = response.body().page;
             mOldResponse.total_results = response.body().total_results;
@@ -126,7 +125,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
 
         mBinding.nowPlayingProgressBar.setVisibility(View.GONE);
         mBinding.swipeRefreshLayout.setRefreshing(false);
-//        mAdapter.setLoaded();
+        mAdapter.setLoaded();
     }
 
     @Override
@@ -137,6 +136,11 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
     @Override
     public void onRefresh() {
         mPageNumber = 0;
+        establishNetworkCall(++mPageNumber);
+    }
+
+    @Override
+    public void onLoadMore() {
         establishNetworkCall(++mPageNumber);
     }
 

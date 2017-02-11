@@ -23,6 +23,7 @@ import com.cinematics.santosh.cinematics.Util.VolleyTon;
 import java.util.ArrayList;
 
 import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
+import com.cinematics.santosh.cinematics.interfaces.LoadMore;
 import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
@@ -41,6 +42,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     private LaunchActivity.MovieStationOnClickListener movieStationOnClickListener;
     private ArrayList<ResultsNowPlaying> resultsNowPlaying;
+    private boolean loading = false;
+    private LoadMore loadMoreListener;
 
     public MoviesAdapter(Context context, ArrayList<ResultsNowPlaying> resultsNowPlaying, LaunchActivity.MovieStationOnClickListener movieStationOnClickListener){
         this.resultsNowPlaying=resultsNowPlaying;
@@ -49,15 +52,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     }
 
     public MoviesAdapter(Context context,
-                  RecyclerView recyclerView
-                  ) {
+                  RecyclerView recyclerView, LoadMore onLoadMoreListener) {
 
         mContext = context;
         mLinearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        loadMoreListener = onLoadMoreListener;
     }
 
     void setNewAPIResponse(MoviesModel response) {
         mMoviesResponse = response;
+    }
+
+    void setLoaded(){
+        loading = false;
     }
 
 
@@ -116,6 +123,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
 
         }*/
+
+
+        if (position + 1 >= mLinearLayoutManager.getItemCount() && !loading && mMoviesResponse.results.size() < mMoviesResponse.total_results) {
+            loading = true;
+            if(loadMoreListener != null){
+                loadMoreListener.onLoadMore();
+            }
+        }
     }
 
     @Override

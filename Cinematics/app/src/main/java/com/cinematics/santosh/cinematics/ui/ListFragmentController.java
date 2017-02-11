@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cinematics.santosh.cinematics.enums.MovieDBNetworkAPIEnum;
+import com.cinematics.santosh.cinematics.interfaces.LoadMore;
 import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkFragment;
@@ -12,7 +13,9 @@ import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers
  * Created by santosh on 2/10/17.
  */
 
-public abstract class ListFragmentController<APIResponseClass>  extends NetworkFragment<APIResponseClass> implements SwipeRefreshLayout.OnRefreshListener{
+public abstract class ListFragmentController<APIResponseClass>  extends NetworkFragment<APIResponseClass> implements
+        SwipeRefreshLayout.OnRefreshListener,
+        LoadMore{
 
     protected MovieDBNetworkAPIEnum mApiType;
     protected RetrofitClient.APIClient mApiClient;
