@@ -81,9 +81,9 @@ public class MoviesLaunchFragment extends TabFragmentController implements TabFr
 
     @Override
     protected int[] getTabDrawableIcon() {
-        return new int[]{R.drawable.ic_menu_camera,
-                R.drawable.ic_menu_gallery,
-                R.drawable.ic_menu_send};
+        return new int[]{R.drawable.ic_trending_up_white,
+                R.drawable.ic_movie_filter_white,
+                R.drawable.ic_favorite_border_white};
     }
 
 

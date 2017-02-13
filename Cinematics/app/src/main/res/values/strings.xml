@@ -25,7 +25,7 @@
     <string-array name="movie_toolbar_hint_array">
         <item>Upcoming Movies</item>
         <item>Popular Movies</item>
-        <item>My Favourites</item>
+        <item>My List</item>
         <item>Search for Movies…</item>
     </string-array>
 

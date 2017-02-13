@@ -3,6 +3,8 @@ package com.cinematics.santosh.cinematics.ui;
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +24,8 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Response;
 
+import static com.cinematics.santosh.cinematics.R.id.ratingBar;
+
 /**
  * Created by 511470 on 2/10/17.
  */
@@ -33,7 +37,7 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
     protected boolean isFavoriteItem;
     private ActivityCommonInfoBinding mBinding;
 
-    protected void initActivity(final String title, String programDescription, String releaseDate, String genre, String posterPath, String backdropPath, float imageAspectRatio){
+    protected void initActivity(final String title,int totalCount, float rating, String programDescription, String releaseDate, String genre, String posterPath, String backdropPath, float imageAspectRatio){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -66,6 +70,8 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.programDescription.setText(programDescription);
         mBinding.releaseDate.setText(releaseDate);
         mBinding.genreText.setText(genre);
+        mBinding.ratingTextview.setText(Float.toString(rating));
+        mBinding.totalRatingCountText.setText("Total: " + Integer.toString(totalCount));
         //-----------------------------------------------
         // HIDING TOOLBAR TITLE WHEN TOOL BAR IS EXPANDED
         //-----------------------------------------------

@@ -94,18 +94,44 @@
                     />
 
 
+
+                <TextView
+                    android:id="@+id/ratingTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:paddingRight="10dp"
+                    android:textSize="24sp"
+                    android:textColor="@color/WhiteSmoke"
+                    android:text="4.6"
+                    android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
+                    android:layout_marginTop="305dp"
+                    />
+
                 <RatingBar
                     android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/title"
-                    style="@style/Base.Widget.AppCompat.RatingBar.Small"
                     android:numStars="5"
-                    android:rating="2.0"
-                    android:isIndicator="false"
-                    android:paddingRight="10dp"
+                    android:rating="4.3"
+                    android:isIndicator="true"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="305dp"
+                    android:stepSize="0.2"
+                    android:theme="@style/RatingBar"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                    />
 
+                <TextView
+                    android:id="@+id/totalRatingCountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="320dp"
                     />
 
                 <android.support.v7.widget.Toolbar

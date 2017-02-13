@@ -44,7 +44,10 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
 
         String releaseDate = results.release_date;
 
-        super.initActivity(results.title,results.overview,
+        super.initActivity(results.title,
+                results.vote_count,
+                results.vote_average,
+                results.overview,
                 releaseDateFormatter(releaseDate),
                 genre,
                 results.poster_path != null ? results.poster_path : results.backdrop_path,
