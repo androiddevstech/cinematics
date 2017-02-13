@@ -89,12 +89,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
                 .load(results.backdrop_path != null ? NetworkConstants.IMG_BASE_BACKDROP_URL + results.backdrop_path :
                         NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path)
                 .into(holder.backdropImage);
-//        holder.title.setText(results.title);
+        holder.title.setText(results.title);
 
 //        holder.overViewText.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
 //        holder.releaseData.setText(results.release_date);
 
-        holder.title.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
+//        holder.title.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
         ObjectAnimator fade = ObjectAnimator.ofFloat(holder.backGroundlayer, View.ALPHA, 1f,.3f);
         fade.setDuration(600);
         fade.setInterpolator(new LinearInterpolator());

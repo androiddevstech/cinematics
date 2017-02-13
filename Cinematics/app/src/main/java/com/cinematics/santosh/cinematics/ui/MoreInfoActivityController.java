@@ -15,6 +15,10 @@ import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkActivity;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -29,7 +33,7 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
     protected boolean isFavoriteItem;
     private ActivityCommonInfoBinding mBinding;
 
-    protected void initActivity(final String title, String programDescription, String releaseDate, String posterPath, String backdropPath, float imageAspectRatio){
+    protected void initActivity(final String title, String programDescription, String releaseDate, String genre, String posterPath, String backdropPath, float imageAspectRatio){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -61,6 +65,7 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.programTitle.setText(title);
         mBinding.programDescription.setText(programDescription);
         mBinding.releaseDate.setText(releaseDate);
+        mBinding.genreText.setText(genre);
         //-----------------------------------------------
         // HIDING TOOLBAR TITLE WHEN TOOL BAR IS EXPANDED
         //-----------------------------------------------
@@ -107,6 +112,19 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
                 establishNetworkCall();
 
         }
+    }
+
+    public String releaseDateFormatter(String releaseDate){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date formattedDate = null;
+        try {
+            formattedDate = simpleDateFormat.parse(releaseDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        simpleDateFormat.applyPattern("MMM dd yyyy");
+
+        return simpleDateFormat.format(formattedDate);
     }
 
 

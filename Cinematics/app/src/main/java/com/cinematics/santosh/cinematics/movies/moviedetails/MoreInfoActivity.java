@@ -7,13 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.cinematics.santosh.cinematics.ui.MoreInfoActivityController;
+import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.model.MovieRecommendationCreditModel;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
 
+import java.text.DateFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -21,9 +24,6 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Response;
 
-/**
- * Created by 511470 on 2/10/17.
- */
 
 public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommendationCreditModel> {
 
@@ -40,13 +40,16 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         results = getIntent().getParcelableExtra(AppIntentConstants.MOVIE_DETAILS);
+        String genre = APIConstants.getInstance().getMovieGenreList(results.genre_ids, this);
+
+        String releaseDate = results.release_date;
 
         super.initActivity(results.title,results.overview,
-                results.release_date,
+                releaseDateFormatter(releaseDate),
+                genre,
                 results.poster_path != null ? results.poster_path : results.backdrop_path,
-                           results.backdrop_path != null ? results.backdrop_path : results.poster_path,
-
-                           ((float) NetworkConstants.backdropDim[1]) / NetworkConstants.backdropDim[0]);
+                results.backdrop_path != null ? results.backdrop_path : results.poster_path,
+                ((float) NetworkConstants.backdropDim[1]) / NetworkConstants.backdropDim[0]);
 
 
         establishNetworkCall();
