@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 import com.cinematics.santosh.cinematics.interfaces.LoadMore;
+import com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity;
 import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
@@ -70,11 +71,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(
-                        R.layout.cardview_item, parent, false);
 
-        return new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.cardview_item, parent, false));
+        viewHolder.context = mContext;
+        return viewHolder;
     }
 
     @Override
@@ -82,18 +82,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         MoviesModel.Results results = mMoviesResponse.results.get(position);
         holder.results = results;
 
-        Picasso.with(mContext)
+        /*Picasso.with(mContext)
                 .load(NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path)
-                .into(holder.moviePoster);
-
+                .into(holder.moviePoster);*/
         Picasso.with(mContext)
-                .load(NetworkConstants.IMG_BASE_BACKDROP_URL + results.backdrop_path)
+                .load(results.backdrop_path != null ? NetworkConstants.IMG_BASE_BACKDROP_URL + results.backdrop_path :
+                        NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path)
                 .into(holder.backdropImage);
-        holder.title.setText(results.title);
+//        holder.title.setText(results.title);
 
 //        holder.overViewText.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
-        holder.releaseData.setText(results.release_date);
+//        holder.releaseData.setText(results.release_date);
 
+        holder.title.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
         ObjectAnimator fade = ObjectAnimator.ofFloat(holder.backGroundlayer, View.ALPHA, 1f,.3f);
         fade.setDuration(600);
         fade.setInterpolator(new LinearInterpolator());
@@ -152,6 +153,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         private ImageView overFlow;
         private View backGroundlayer;
         private MoviesModel.Results results;
+        private Context context;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -161,12 +163,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             title = (TextView)itemView.findViewById(R.id.title);
             overViewText = (TextView) itemView.findViewById(R.id.movie_description);
             backGroundlayer = (View) itemView.findViewById(R.id.vw_blacklayer);
+            itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
-
+            MoreInfoActivity.startActivityIntent(context,results);
         }
     }
 }

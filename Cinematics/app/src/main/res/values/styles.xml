@@ -27,7 +27,7 @@
         <item name="android:layout_height">48dp</item>
         <item name="pstsShouldExpand">true</item>
         <item name="pstsIndicatorHeight">4dp</item>
-        <item name="pstsIndicatorColor">@android:color/holo_orange_light</item>
+        <item name="pstsIndicatorColor">@color/DarkOrange</item>
 
     </style>
 

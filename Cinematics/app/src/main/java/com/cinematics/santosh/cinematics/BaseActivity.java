@@ -19,8 +19,18 @@ import com.cinematics.santosh.cinematics.movies.MoviesLaunchFragment;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesFragment;
 import com.cinematics.santosh.cinematics.tvseries.TVSeriesFragment;
 import com.cinematics.santosh.cinematics.ui.TabFragmentController;
+import com.cinematics.santosh.databasemodule.DatabaseConstants;
 import com.cinematics.santosh.databasemodule.userpreferences.UserPreferences;
+import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.pojos.model.GenreModel;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
+import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.CallbackWrapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragment.OnFragmentInteractionListener,
@@ -32,6 +42,8 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         FavoriteMoviesFragment.OnFragmentInteractionListener
 
 {
+
+    private UserPreferences mPrefManager;
 
     private boolean mMovieGenreLoaded, mTvGenreLoaded;
     private UserPreferences mPreferences;
@@ -45,6 +57,8 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         bindingViews();
         mApiClient = RetrofitClient.getInstance().getNetworkClient();
         mPreferences = UserPreferences.getAppPreferenceInstance(this);
+        mPrefManager = UserPreferences.getAppPreferenceInstance(this);
+        mApiClient.getMovieGenreList().enqueue(movieGenreResponse);
 
 
     }
@@ -81,6 +95,37 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    private Callback<GenreModel> movieGenreResponse = new CallbackWrapper<GenreModel>() {
+        @Override
+        public void onNetworkResponse(Call<GenreModel> call, retrofit2.Response<GenreModel> response) {
+            HashMap<Integer, String> movieMap = new HashMap<>(26);
+
+            //SparseArray<String> movieMap = new SparseArray<>(10);
+
+            for (GenreModel.Genres genres : response.body().genres)
+                movieMap.put(genres.id, genres.name);
+
+            APIConstants.getInstance().setMovieGenreMap(movieMap);
+            mMovieGenreLoaded = true;
+
+            try {
+                if (mPrefManager.getPreferenceData(DatabaseConstants.MOVIE_GENRE_CACHE) == null) {
+                    mPrefManager.setPreferenceData(DatabaseConstants.MOVIE_GENRE_CACHE,
+                            APIConstants.getInstance().getObjectMapper().writeValueAsString(movieMap));
+                }
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        @Override
+        public void onNetworkFailure(Call<GenreModel> call, Throwable t) {
+//            Utils.displayNetworkErrorSnackBar(findViewById(android.R.id.content), AppMainActivity.this);
+        }
+    };
 
 
 }

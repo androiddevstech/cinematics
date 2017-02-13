@@ -26,6 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LaunchActivity"></activity>
+        <activity
+            android:name=".movies.moviedetails.MoreInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <meta-data android:name="com.cinematics.santosh.cinematics.ui.util.GlideImagesQualityConfiguration"
             android:value="GlideModule"/>
     </application>

@@ -31,7 +31,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-                <com.android.volley.toolbox.NetworkImageView
+                <ImageView
                     android:id="@+id/movieDetailsBackdrop"
                     android:layout_width="fill_parent"
                     android:layout_height="230dp"
@@ -42,7 +42,7 @@
                     />
 
 
-                <com.android.volley.toolbox.NetworkImageView
+                <ImageView
                     android:layout_width="100dp"
                     android:layout_height="140dp"
                     android:scaleType="centerCrop"
@@ -61,22 +61,51 @@
                     android:singleLine="true"
                     android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
                     android:text="Hello"
+                    android:textStyle="bold"
                     android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:layout_marginTop="@dimen/moreInfo_content_title_margin_top"
                     />
 
                 <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/genreText"
+                android:paddingRight="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/DarkGray"
+                android:text="Genre: Action, Comedy"
+                android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
+                android:layout_marginTop="@dimen/moreInfo_content_description_margin_top"
+                />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/programDescription"
+                    android:id="@+id/releaseDate"
                     android:paddingRight="10dp"
                     android:textSize="12sp"
-                    android:textColor="@color/white"
-                    android:text="Hello hello"
+                    android:textColor="@color/DarkGray"
+                    android:text="PG13 | Feb 8th 2017"
                     android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
-                    android:layout_marginTop="@dimen/moreInfo_content_description_margin_top"
+                    android:layout_marginTop="285dp"
+                    />
+
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                    android:numStars="5"
+                    android:rating="2.0"
+                    android:isIndicator="false"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="305dp"
+
                     />
 
                 <android.support.v7.widget.Toolbar
@@ -92,7 +121,32 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_common_info" />
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/programDescription"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/Black"
+                    />
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

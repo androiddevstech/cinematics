@@ -84,8 +84,8 @@ public class MoreInfoActivity extends AppCompatActivity {
 
                 ImageLoader imageLoader = VolleyTon.getInstance().getImageLoader();
 
-                mCommonInfoBinding.movieDetailsBackdrop.setImageUrl(url, imageLoader);
-                mCommonInfoBinding.movieDetailsPoster.setImageUrl(url_poster,imageLoader);
+//                mCommonInfoBinding.movieDetailsBackdrop.setImageUrl(url, imageLoader);
+//                mCommonInfoBinding.movieDetailsPoster.setImageUrl(url_poster,imageLoader);
                 mCommonInfoBinding.toolbar.setTitle(" ");
 
                 mCommonInfoBinding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {

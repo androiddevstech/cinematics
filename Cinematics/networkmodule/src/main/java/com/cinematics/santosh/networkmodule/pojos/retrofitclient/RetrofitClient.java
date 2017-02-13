@@ -33,21 +33,20 @@ public class RetrofitClient implements Interceptor {
     private APIClient mApiClient;
     private OkHttpClient mOkHttpClient;
 
+
     private RetrofitClient() {
 
         mOkHttpClient = new OkHttpClient
                 .Builder()
-//                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(this)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(NetworkConstants.NETWORK_BASE_URL)
-                .addConverterFactory(JacksonConverterFactory.create(APIConstants.getInstance().getObjectMapper()))
-                .client(mOkHttpClient)
-                .build();
-
-        mApiClient = retrofit.create(APIClient.class);
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(NetworkConstants.NETWORK_BASE_URL)
+                        .addConverterFactory(JacksonConverterFactory.create(APIConstants.getInstance().getObjectMapper()))
+                        .client(mOkHttpClient)
+                        .build();
+                mApiClient = retrofit.create(APIClient.class);
     }
 
 
@@ -71,7 +70,7 @@ public class RetrofitClient implements Interceptor {
 
 
     public static RetrofitClient getInstance() {
-        return mRetrofitClientInstance;
+                return mRetrofitClientInstance;
     }
 
 
