@@ -101,8 +101,6 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         public void onNetworkResponse(Call<GenreModel> call, retrofit2.Response<GenreModel> response) {
             HashMap<Integer, String> movieMap = new HashMap<>(26);
 
-            //SparseArray<String> movieMap = new SparseArray<>(10);
-
             for (GenreModel.Genres genres : response.body().genres)
                 movieMap.put(genres.id, genres.name);
 
@@ -127,5 +125,16 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         }
     };
 
+    @Override
+    public void onBackPressed() {
 
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
+    }
 }

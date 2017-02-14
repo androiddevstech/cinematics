@@ -16,8 +16,14 @@
     <item
         android:id="@+id/action_celeb"
         android:enabled="true"
-        android:icon="@drawable/ic_navigation_white"
-        android:title="Near By"
+        android:icon="@drawable/ic_celebrities"
+        android:title="Celebrities"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_location"
+        android:enabled="true"
+        android:icon="@drawable/ic_location_on_white_24dp"
+        android:title="Nearby"
         app:showAsAction="ifRoom" />
 
 </menu>

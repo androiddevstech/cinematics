@@ -77,6 +77,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
             case API_SEARCH_MOVIE:
                 mApiClient.getMovieSearchResults(getArguments().getString(AppIntentConstants.QUERY_STRING), pageNumber).enqueue(this);
                 break;
+
         }
     }
 
@@ -86,6 +87,8 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onAttach(Context context) {

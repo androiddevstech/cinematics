@@ -65,6 +65,14 @@
                 android:maxLines="1"
                 />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_navigate_right_white"
+                android:layout_alignBottom="@+id/title"
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -162,7 +162,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             releaseData = (TextView) itemView.findViewById(R.id.releaseData);
             title = (TextView)itemView.findViewById(R.id.title);
             overViewText = (TextView) itemView.findViewById(R.id.movie_description);
-            backGroundlayer = (View) itemView.findViewById(R.id.vw_blacklayer);
+            backGroundlayer = (View)itemView.findViewById(R.id.vw_blacklayer) ;
             itemView.setOnClickListener(this);
 
         }

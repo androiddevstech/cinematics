@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cinematics</string>
+    <string name="app_name">MovieDB</string>
     <string name="action_settings">Settings</string>
     <string name="action_add_favourite">Add to Favourites</string>
     <string name="action_more_info">More Info</string>

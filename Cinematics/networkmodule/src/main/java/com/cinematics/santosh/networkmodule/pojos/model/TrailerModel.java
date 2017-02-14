@@ -9,5 +9,6 @@ public class TrailerModel {
         public String key;
         public String site;
         public String type;
+        public String name;
     }
 }

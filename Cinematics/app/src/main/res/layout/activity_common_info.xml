@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.sparks.techie.moviestation.MoreInfoActivity">
+        tools:context="com.sparks.techie.moviestation.MoreInfoActivity"
+        >
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -40,8 +41,6 @@
                     app:srcCompat="@mipmap/ic_launcher"
                     android:fitsSystemWindows="true"
                     />
-
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="140dp"
@@ -92,9 +91,6 @@
                     android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
                     android:layout_marginTop="285dp"
                     />
-
-
-
                 <TextView
                     android:id="@+id/ratingTextview"
                     android:layout_width="wrap_content"
@@ -159,8 +155,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,6 +163,83 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/Black"
                     />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/budgetText"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/Black"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/revenueText"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/Black"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/DarkOrange"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:alpha="0.15"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trailersTitle"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/DimGray"
+                    android:textStyle="bold"
+                    android:text="Trailers"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/trailerRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/DarkOrange"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:alpha="0.15"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/similarMoviesText"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/DimGray"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recommendationsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                     />
+
             </LinearLayout>
 
 
@@ -179,9 +250,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/app_bar_layout"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@android:drawable/ic_menu_share" />
+            android:layout_gravity="end|bottom"
+            app:srcCompat="@drawable/ic_add_white" />
+
 
     </android.support.design.widget.CoordinatorLayout>
 

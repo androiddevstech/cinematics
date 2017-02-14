@@ -89,6 +89,9 @@ public class RetrofitClient implements Interceptor {
         @GET("movie/upcoming")
         Call<MoviesModel> getUpcomingMovies(@Query("page") int page);
 
+        @GET("movie/now_playing")
+        Call<MoviesModel> getNowPlayingMovies(@Query("page") int page);
+
         @GET("movie/popular")
         Call<MoviesModel> getPopularMovies(@Query("page") int page);
 

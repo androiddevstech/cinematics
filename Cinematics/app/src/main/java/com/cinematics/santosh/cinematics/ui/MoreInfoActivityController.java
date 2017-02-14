@@ -1,30 +1,44 @@
 package com.cinematics.santosh.cinematics.ui;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.databinding.ActivityCommonInfoBinding;
+import com.cinematics.santosh.cinematics.movies.moviedetails.SimilarMoviesAdapter;
+import com.cinematics.santosh.cinematics.trailers.TrailerAdapter;
+import com.cinematics.santosh.cinematics.trailers.YoutubePlayerActivity;
 import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
 import static com.cinematics.santosh.cinematics.R.id.ratingBar;
+import static com.cinematics.santosh.cinematics.R.id.recyclerView;
 
 /**
  * Created by 511470 on 2/10/17.
@@ -36,8 +50,17 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
     protected FloatingActionButton mActionButton;
     protected boolean isFavoriteItem;
     private ActivityCommonInfoBinding mBinding;
+    protected String mYouTubeKey;
 
-    protected void initActivity(final String title,int totalCount, float rating, String programDescription, String releaseDate, String genre, String posterPath, String backdropPath, float imageAspectRatio){
+    protected void initActivity(final String title,
+                                int totalCount,
+                                float rating,
+                                String programDescription,
+                                String releaseDate,
+                                String genre,
+                                String posterPath,
+                                String backdropPath,
+                                float imageAspectRatio){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -70,8 +93,30 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.programDescription.setText(programDescription);
         mBinding.releaseDate.setText(releaseDate);
         mBinding.genreText.setText(genre);
-        mBinding.ratingTextview.setText(Float.toString(rating));
-        mBinding.totalRatingCountText.setText("Total: " + Integer.toString(totalCount));
+        if(Float.toString(rating).equalsIgnoreCase("0.0")){
+            mBinding.ratingTextview.setText("Rating N/A");
+            mBinding.totalRatingCountText.setVisibility(View.GONE);
+            mBinding.ratingBar.setVisibility(View.GONE);
+
+        }else{
+            mBinding.ratingBar.setVisibility(View.VISIBLE);
+            mBinding.totalRatingCountText.setVisibility(View.VISIBLE);
+            mBinding.ratingTextview.setText(Float.toString(rating));
+            mBinding.totalRatingCountText.setText("Total: " + Integer.toString(totalCount));
+        }
+        mBinding.budgetText.setText("Budget:  " + "$ 1,32,9008");
+        mBinding.revenueText.setText("Revenue:  " + "$ 2,43,1222");
+        mBinding.similarMoviesText.setText("More like: " + title);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
+        mBinding.recommendationsRecyclerView.setLayoutManager(mLayoutManager);
+        mBinding.recommendationsRecyclerView.setAdapter(new SimilarMoviesAdapter(this));
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mBinding.trailerRecyclerView.setLayoutManager(layoutManager);
+        mBinding.trailerRecyclerView.setAdapter(new TrailerAdapter(this));
+
         //-----------------------------------------------
         // HIDING TOOLBAR TITLE WHEN TOOL BAR IS EXPANDED
         //-----------------------------------------------
@@ -112,7 +157,9 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
                 //TODO: Add to favorites functionality
                 break;
             case R.id.movieDetailsBackdrop:
-                //TODO: launch youtube activity
+                Intent youtubePlayer = new Intent(MoreInfoActivityController.this, YoutubePlayerActivity.class);
+                youtubePlayer.putExtra(AppIntentConstants.TRAILER_LAUNCH, mYouTubeKey);
+                startActivity(youtubePlayer);
                 break;
             default:
                 establishNetworkCall();
@@ -131,6 +178,28 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         simpleDateFormat.applyPattern("MMM dd yyyy");
 
         return simpleDateFormat.format(formattedDate);
+    }
+
+    public void showTrailersView(List<TrailerModel.Results> results){
+        mBinding.trailerRecyclerView.setVisibility(View.VISIBLE);
+        mBinding.trailersTitle.setVisibility(View.VISIBLE);
+        ((TrailerAdapter) (mBinding.trailerRecyclerView.getAdapter())).setTrailerResponse(results);
+    }
+
+    public void hideTrailersRecyclerView(){
+        mBinding.trailerRecyclerView.setVisibility(View.GONE);
+        mBinding.trailersTitle.setVisibility(View.GONE);
+    }
+
+    public void showRecommendations(List<MoviesModel.Results> results) {
+        mBinding.similarMoviesText.setVisibility(View.VISIBLE);
+        mBinding.recommendationsRecyclerView.setVisibility(View.VISIBLE);
+        ((SimilarMoviesAdapter) (mBinding.recommendationsRecyclerView.getAdapter())).setSimilarMoviesResponse(results);
+    }
+
+    public void hideRecyclerView() {
+        mBinding.similarMoviesText.setVisibility(View.GONE);
+        mBinding.recommendationsRecyclerView.setVisibility(View.GONE);
     }
 
 

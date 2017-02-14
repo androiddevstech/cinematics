@@ -1,5 +1,8 @@
 package com.cinematics.santosh.cinematics.trailers;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -10,6 +13,11 @@ import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.Util.Constants;
 import com.cinematics.santosh.cinematics.Util.UriBuilderUtil;
 import com.cinematics.santosh.cinematics.Util.VolleyTon;
+import com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity;
+import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
+import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -29,6 +37,7 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
     private MovieDetails movieDetails;
     private YouTubePlayerLaunch youTubePlayerLaunchListener;
     private int movieId;
+    private String youtubeKey;
 
 
     @Override
@@ -39,8 +48,11 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
         Bundle myBundle = getIntent().getExtras();
         if(myBundle!=null)
             movieId=myBundle.getInt(Constants.MOVIE_ID);
-        fetchDataForMovieDetails(movieId);
+            youtubeKey = myBundle.getString(AppIntentConstants.TRAILER_LAUNCH);
+//        fetchDataForMovieDetails(movieId);
+        playTrailer();
     }
+
 
     @Override
     protected void onStart() {
@@ -72,38 +84,20 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
         super.onDestroy();
     }
 
-    private void fetchDataForMovieDetails(final int movieId) {
-        String url = UriBuilderUtil.getURLForMovieDetailsWithID(movieId);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson= new Gson();
-                movieDetails = gson.fromJson(response,MovieDetails.class);
-                playTrailer(movieDetails);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        VolleyTon.getInstance().addToRequestQueue(stringRequest);
-    }
-
-    public void playTrailer(final  MovieDetails mMovieDetails) {
+    public void playTrailer() {
         youTubePlayerView.initialize(Constants.YOUBUE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if (!b) {
+                    youTubePlayer.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_ALWAYS_FULLSCREEN_IN_LANDSCAPE);
                     youTubePlayer.setFullscreen(true);
                     // loadVideo() will auto play video
                     // Use cueVideo() method, if you don't want to play it automatically
-                    youTubePlayer.cueVideo(mMovieDetails.getVideos().getResults().get(0).getKey());
+                    if(youtubeKey != null)
+                    youTubePlayer.loadVideo(youtubeKey);
 
                     // Hiding player controls
                     youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-
                 }
             }
 

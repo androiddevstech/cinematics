@@ -13,6 +13,8 @@ public interface AppIntentConstants {
 
     String MOVIE_DETAILS = "MOVIE_DETAILS";
 
+    String TRAILER_LAUNCH ="TRAILER_LAUNCH";
+
     String TV_DETAILS = "TV_DETAILS";
 
     // intent constants for search
