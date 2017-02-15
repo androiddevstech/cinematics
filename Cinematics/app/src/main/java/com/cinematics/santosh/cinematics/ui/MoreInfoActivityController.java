@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.cinematics.santosh.cinematics.R;
+import com.cinematics.santosh.cinematics.castcrew.CastAndCrewAdapter;
 import com.cinematics.santosh.cinematics.databinding.ActivityCommonInfoBinding;
 import com.cinematics.santosh.cinematics.movies.moviedetails.SimilarMoviesAdapter;
 import com.cinematics.santosh.cinematics.trailers.TrailerAdapter;
@@ -25,6 +26,7 @@ import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.pojos.model.MoviesTVCastingModel;
 import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkActivity;
 import com.squareup.picasso.Picasso;
@@ -117,6 +119,10 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.trailerRecyclerView.setLayoutManager(layoutManager);
         mBinding.trailerRecyclerView.setAdapter(new TrailerAdapter(this));
 
+        RecyclerView.LayoutManager castAndCrewLayoutManager = new GridLayoutManager(this, 2);
+        mBinding.castAndCrewRecyclerView.setLayoutManager(castAndCrewLayoutManager);
+        mBinding.castAndCrewRecyclerView.setAdapter(new CastAndCrewAdapter(this));
+
         //-----------------------------------------------
         // HIDING TOOLBAR TITLE WHEN TOOL BAR IS EXPANDED
         //-----------------------------------------------
@@ -178,6 +184,16 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         simpleDateFormat.applyPattern("MMM dd yyyy");
 
         return simpleDateFormat.format(formattedDate);
+    }
+
+    public void showCastAndCrewView(List<MoviesTVCastingModel.Cast> castingList){
+        mBinding.castAndCrewRecyclerView.setVisibility(View.VISIBLE);
+        ((CastAndCrewAdapter) (mBinding.castAndCrewRecyclerView.getAdapter())).setCastAndCrewResponse(castingList);
+
+    }
+
+    public void hideCastAndCrewView(){
+        mBinding.castAndCrewRecyclerView.setVisibility(View.GONE);
     }
 
     public void showTrailersView(List<TrailerModel.Results> results){

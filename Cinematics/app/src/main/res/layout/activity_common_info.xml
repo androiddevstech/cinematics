@@ -155,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!--DESCRIPTION LAYOUT-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,6 +193,8 @@
                     android:layout_marginTop="10dp"
                     />
 
+                <!--TRAILERS LAYOUT-->
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -222,6 +225,54 @@
                     android:layout_marginTop="10dp"
                     />
 
+                <!--CAST & CREW LAYOUT-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/castCrewTitle"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/DimGray"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/cast_crew_layout_title"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/castAndCrewRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/full_cast_and_crew_text"
+                    android:textAlignment="gravity"
+                    android:elegantTextHeight="true"
+                    android:textAllCaps="false"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/DarkOrange"
+                    android:textColor="@color/White"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/DarkOrange"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:alpha="0.15"
+                    android:layout_marginTop="15dp"
+                    />
+
+
+                <!--SIMILAR MOVIES LAYOUT-->
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -230,7 +281,7 @@
                     android:textColor="@color/DimGray"
                     android:textStyle="bold"
                     android:textSize="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     />
 
                 <android.support.v7.widget.RecyclerView

@@ -9,5 +9,6 @@ public class MoviesTVCastingModel {
     public static class Cast {
         public String character;
         public String name;
+        public String profile_path;
     }
 }

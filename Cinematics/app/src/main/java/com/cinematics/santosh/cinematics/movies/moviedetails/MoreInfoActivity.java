@@ -14,6 +14,7 @@ import com.cinematics.santosh.networkmodule.pojos.model.MoviesTVCastingModel;
 import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -105,9 +106,15 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
         //-----------------------
 
         List<MoviesTVCastingModel.Cast> casts = response.body().credits.cast;
+        List<MoviesTVCastingModel.Cast> topbilledCast = new ArrayList<MoviesTVCastingModel.Cast>();
+
 
         StringBuilder sb = new StringBuilder();
-        if (casts != null){
+        if (casts != null && casts.size() > 0){
+            for(int i=0 ; i< casts.size() && i<4;i++){
+                topbilledCast.add(casts.get(i));
+            }
+            showCastAndCrewView(topbilledCast);
 
         }
         /*    for (int i = 0; i < casts.size() && i < 5; i++) {
