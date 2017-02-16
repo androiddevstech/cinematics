@@ -24,7 +24,6 @@ import retrofit2.Response;
 public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommendationCreditModel> {
 
     private MoviesModel.Results results;
-    private TrailerModel.Results trailerResults;
 
     public static void startActivityIntent(Context context, MoviesModel.Results results) {
         Intent intent = new Intent(context, MoreInfoActivity.class);
@@ -36,7 +35,6 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         results = getIntent().getParcelableExtra(AppIntentConstants.MOVIE_DETAILS);
-        trailerResults = getIntent().getParcelableExtra(AppIntentConstants.TRAILER_LAUNCH);
         String genre = APIConstants.getInstance().getMovieGenreList(results.genre_ids, this);
 
         String releaseDate = results.release_date;
@@ -102,7 +100,7 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
         }
 
         //-----------------------
-        //  Cast  & Crew
+        //  Limited Cast  & Crew
         //-----------------------
 
         List<MoviesTVCastingModel.Cast> casts = response.body().credits.cast;
@@ -111,20 +109,22 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
 
         StringBuilder sb = new StringBuilder();
         if (casts != null && casts.size() > 0){
-            for(int i=0 ; i< casts.size() && i<4;i++){
+            for(int i=0 ; i< casts.size() && i<6;i++){
                 topbilledCast.add(casts.get(i));
             }
-            showCastAndCrewView(topbilledCast);
+            showLimitedCastAndCrewView(topbilledCast);
 
         }
-        /*    for (int i = 0; i < casts.size() && i < 5; i++) {
-                sb.append(Utils.toString(casts.get(i).name)).append(" as ").append(Utils.toString(casts.get(i).character)).append("\n");
-            }
-        if (sb.length() > 0)
-            sb.deleteCharAt(sb.length() - 1);
 
-        if (textViewMovieCast != null)
-            textViewMovieCast.setText(Utils.toString(sb));*/
+        //-----------------------
+        //  Full Cast  & Crew
+        //-----------------------
+
+        List<MoviesTVCastingModel.Cast> fullCastAndCrew = response.body().credits.cast;
+
+        if (fullCastAndCrew != null && fullCastAndCrew.size() > 0){
+        }
+
 
     }
 }

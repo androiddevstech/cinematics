@@ -21,6 +21,7 @@ import com.cinematics.santosh.cinematics.Util.Constants;
 import com.cinematics.santosh.cinematics.Util.VolleyTon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 import com.cinematics.santosh.cinematics.interfaces.LoadMore;
@@ -37,6 +38,7 @@ import com.squareup.picasso.Picasso;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     private MoviesModel mMoviesResponse;
+    private List<MoviesModel.Results> mMoviesList;
     private Context mContext;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -64,6 +66,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         mMoviesResponse = response;
     }
 
+    public void setSimilarMoviesResponse(List<MoviesModel.Results> results) {
+        this.mMoviesList = results;
+        this.notifyDataSetChanged();
+    }
+
     void setLoaded(){
         loading = false;
     }
@@ -79,17 +86,18 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        MoviesModel.Results results = mMoviesResponse.results.get(position);
-        holder.results = results;
+//        MoviesModel.Results results = mMoviesResponse.results.get(position);
+//        holder.results = results;
+        holder.results = mMoviesList.get(position);
 
         /*Picasso.with(mContext)
                 .load(NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path)
                 .into(holder.moviePoster);*/
         Picasso.with(mContext)
-                .load(results.backdrop_path != null ? NetworkConstants.IMG_BASE_BACKDROP_URL + results.backdrop_path :
-                        NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path)
+                .load(holder.results.backdrop_path != null ? NetworkConstants.IMG_BASE_BACKDROP_URL + holder.results.backdrop_path :
+                        NetworkConstants.IMG_BASE_POSTER_URL + holder.results.poster_path)
                 .into(holder.backdropImage);
-        holder.title.setText(results.title);
+        holder.title.setText(holder.results.title);
 
 //        holder.overViewText.setText(APIConstants.getInstance().getMovieGenreList(results.genre_ids, mContext));
 //        holder.releaseData.setText(results.release_date);
@@ -100,33 +108,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         fade.setInterpolator(new LinearInterpolator());
         fade.start();
 
-        /*if(resultsNowPlaying!=null) {
-            String poster_path = resultsNowPlaying.get(position).getPoster_path();
-            String backdrop_path = resultsNowPlaying.get(position).getBackdrop_path();
-            String url = Constants.IMAGE_BASE_URL + poster_path;
-            String url_backdrop = Constants.IMAGE_BASE_URL + backdrop_path;
-            ImageLoader imageLoader = VolleyTon.getInstance().getImageLoader();
-
-            holder.title.setText(results.title);
-            holder.releaseData.setText(resultsNowPlaying.get(position).getRelease_date());
-            holder.overViewText.setText(resultsNowPlaying.get(position).getOverview());
-
-            holder.backdropImage.setImageUrl(url_backdrop, imageLoader);
-            holder.backdropImage.setErrorImageResId(R.drawable.now_playing_place_holder);
-            holder.backdropImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    movieStationOnClickListener.onClick(position,v,resultsNowPlaying.get(position));
-                }
-            });
-            holder.moviePoster.setImageUrl(url,imageLoader);
-
-
-
-        }*/
-
-
-        if (position + 1 >= mLinearLayoutManager.getItemCount() && !loading && mMoviesResponse.results.size() < mMoviesResponse.total_results) {
+        if (position + 1 >= mLinearLayoutManager.getItemCount() && !loading && mMoviesList.size() < 1500) {
             loading = true;
             if(loadMoreListener != null){
                 loadMoreListener.onLoadMore();
@@ -136,7 +118,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mMoviesResponse != null ? mMoviesResponse.results.size() : 0;
+        return mMoviesList != null ? mMoviesList.size() : 0;
     }
 
     public void updateNowPlaying(ArrayList<ResultsNowPlaying> resultsNowPlaying){

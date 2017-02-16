@@ -1,14 +1,9 @@
 package com.cinematics.santosh.cinematics.ui;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,9 +16,7 @@ import com.cinematics.santosh.cinematics.castcrew.CastAndCrewAdapter;
 import com.cinematics.santosh.cinematics.databinding.ActivityCommonInfoBinding;
 import com.cinematics.santosh.cinematics.movies.moviedetails.SimilarMoviesAdapter;
 import com.cinematics.santosh.cinematics.trailers.TrailerAdapter;
-import com.cinematics.santosh.cinematics.trailers.YoutubePlayerActivity;
 import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
 import com.cinematics.santosh.networkmodule.pojos.model.MoviesTVCastingModel;
@@ -37,10 +30,6 @@ import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Response;
-
-import static com.cinematics.santosh.cinematics.R.id.ratingBar;
-import static com.cinematics.santosh.cinematics.R.id.recyclerView;
 
 /**
  * Created by 511470 on 2/10/17.
@@ -119,9 +108,10 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.trailerRecyclerView.setLayoutManager(layoutManager);
         mBinding.trailerRecyclerView.setAdapter(new TrailerAdapter(this));
 
-        RecyclerView.LayoutManager castAndCrewLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager castAndCrewLayoutManager = new GridLayoutManager(this, 3);
         mBinding.castAndCrewRecyclerView.setLayoutManager(castAndCrewLayoutManager);
         mBinding.castAndCrewRecyclerView.setAdapter(new CastAndCrewAdapter(this));
+
 
         //-----------------------------------------------
         // HIDING TOOLBAR TITLE WHEN TOOL BAR IS EXPANDED
@@ -162,11 +152,6 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
             case R.id.fab:
                 //TODO: Add to favorites functionality
                 break;
-            case R.id.movieDetailsBackdrop:
-                Intent youtubePlayer = new Intent(MoreInfoActivityController.this, YoutubePlayerActivity.class);
-                youtubePlayer.putExtra(AppIntentConstants.TRAILER_LAUNCH, mYouTubeKey);
-                startActivity(youtubePlayer);
-                break;
             default:
                 establishNetworkCall();
 
@@ -186,11 +171,13 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         return simpleDateFormat.format(formattedDate);
     }
 
-    public void showCastAndCrewView(List<MoviesTVCastingModel.Cast> castingList){
+    public void showLimitedCastAndCrewView(List<MoviesTVCastingModel.Cast> castingList){
         mBinding.castAndCrewRecyclerView.setVisibility(View.VISIBLE);
         ((CastAndCrewAdapter) (mBinding.castAndCrewRecyclerView.getAdapter())).setCastAndCrewResponse(castingList);
 
     }
+
+
 
     public void hideCastAndCrewView(){
         mBinding.castAndCrewRecyclerView.setVisibility(View.GONE);

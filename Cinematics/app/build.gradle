@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    compile 'de.greenrobot:eventbus:2.4.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':networkmodule')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

@@ -50,7 +50,12 @@ public class CastAndCrewAdapter extends RecyclerView.Adapter<CastAndCrewAdapter.
                     .load(NetworkConstants.IMG_BASE_POSTER_URL + holder.castingResults.profile_path)
                     .into(holder.castImage);
         }else {
-            holder.placeHolder.setVisibility(View.VISIBLE);
+
+            Picasso.with(mContext)
+                    .load(R.drawable.ic_account_circle_black)
+                    .into(holder.castImage);
+
+            holder.placeHolder.setVisibility(View.GONE);
             holder.placeHolder.setText("CB");
         }
 
@@ -84,7 +89,7 @@ public class CastAndCrewAdapter extends RecyclerView.Adapter<CastAndCrewAdapter.
 
         @Override
         public void onClick(View view) {
-            //TODO: OPEN CELEBRITY PAGE
+            //TODO: OPEN CELEBRITY DETAILS PAGE
         }
     }
 }

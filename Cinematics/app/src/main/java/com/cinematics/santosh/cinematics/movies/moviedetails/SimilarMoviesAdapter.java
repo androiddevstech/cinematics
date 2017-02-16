@@ -38,11 +38,6 @@ public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdap
         this.notifyDataSetChanged();
     }
 
-    public void setTrailerResponse(List<TrailerModel.Results> results) {
-        this.mTrailerList = results;
-        this.notifyDataSetChanged();
-    }
-
     @Override
     public SimilarMoviesAdapter.RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerViewHolder viewHolder = new RecyclerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.recommendations_cardview_item, parent, false));
@@ -79,7 +74,7 @@ public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdap
         @Override
         public void onClick(View v) {
             MoreInfoActivity.startActivityIntent(context, results);
-            ((AppCompatActivity) context).finish();
+//            ((AppCompatActivity) context).finish();
         }
     }
 }

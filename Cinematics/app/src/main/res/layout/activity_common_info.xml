@@ -246,18 +246,20 @@
                     android:layout_marginTop="10dp"
                     />
 
-                <Button
+             <!--   <Button
                     android:layout_width="170dp"
+                    android:id="@+id/fullCastAndCrewButton"
                     android:layout_height="25dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/full_cast_and_crew_text"
                     android:textAlignment="gravity"
                     android:elegantTextHeight="true"
+                    android:clickable="true"
                     android:textAllCaps="false"
                     android:gravity="center_horizontal"
                     android:layout_gravity="center_horizontal"
                     android:background="@color/DarkOrange"
-                    android:textColor="@color/White"/>
+                    android:textColor="@color/White"/>-->
 
                 <View
                     android:layout_width="wrap_content"

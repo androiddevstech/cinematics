@@ -30,5 +30,6 @@
         <item>My List</item>
         <item>Search for Movies…</item>
     </string-array>
+    <string name="title_activity_full_cast_and_crew">FullCastAndCrewActivity</string>
 
 </resources>

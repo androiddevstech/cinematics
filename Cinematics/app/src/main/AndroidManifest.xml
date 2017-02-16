@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cinematics.santosh.cinematics">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -25,13 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LaunchActivity"></activity>
-        <activity android:name=".trailers.YoutubePlayerActivity"></activity>
+        <activity android:name=".LaunchActivity" />
+        <activity android:name=".trailers.YoutubePlayerActivity" />
         <activity
             android:name=".movies.moviedetails.MoreInfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <meta-data android:name="com.cinematics.santosh.cinematics.ui.util.GlideImagesQualityConfiguration"
-            android:value="GlideModule"/>
+
+        <meta-data
+            android:name="com.cinematics.santosh.cinematics.ui.util.GlideImagesQualityConfiguration"
+            android:value="GlideModule" />
+
+
     </application>
 
 </manifest>

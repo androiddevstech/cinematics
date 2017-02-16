@@ -26,7 +26,6 @@ import com.cinematics.santosh.cinematics.Util.Constants;
 import com.cinematics.santosh.cinematics.Util.UriBuilderUtil;
 import com.cinematics.santosh.cinematics.Util.VolleyTon;
 import com.cinematics.santosh.cinematics.databinding.ActivityMainBinding;
-import com.cinematics.santosh.cinematics.moreinfo.MoreInfoActivity;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesAdapter;
 import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
 import com.google.gson.Gson;
@@ -79,10 +78,10 @@ public class LaunchActivity extends AppCompatActivity {
                         Pair.create(view,"selectedMovie")
                 ).toBundle();
 
-                Intent intent = new Intent(LaunchActivity.this,MoreInfoActivity
+               /* Intent intent = new Intent(LaunchActivity.this,MoreInfoActivity
                         .class);
                 intent.putExtra(Constants.MOVIE_ID,resultsNowPlaying.getId());
-                startActivity(intent,bundle);
+                startActivity(intent,bundle);*/
             }
         };
 
