@@ -1,4 +1,4 @@
-package com.cinematics.santosh.networkmodule.pojos.constants;
+package com.cinematics.santosh.networkmodule.service.constants;
 
 import android.content.Context;
 import android.text.TextUtils;

@@ -1,17 +1,15 @@
-package com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers;
+package com.cinematics.santosh.networkmodule.service.retrofitclient.networkwrappers;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 
 
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
-public abstract class NetworkActivity<APIResponseClass> extends AppCompatActivity implements Callback<APIResponseClass> {
+public abstract class NetworkFragment<APIResponseClass> extends Fragment implements Callback<APIResponseClass> {
 
     protected abstract void onNetworkResponse(Call<APIResponseClass> call, Response<APIResponseClass> response);
 
@@ -36,7 +34,7 @@ public abstract class NetworkActivity<APIResponseClass> extends AppCompatActivit
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
         RetrofitClient.getInstance().cancelAllRequests();

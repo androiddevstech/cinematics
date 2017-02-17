@@ -1,4 +1,4 @@
-package com.cinematics.santosh.networkmodule.pojos.constants;
+package com.cinematics.santosh.networkmodule.service.constants;
 
 
 public interface NetworkConstants {
@@ -12,7 +12,7 @@ public interface NetworkConstants {
     String YOUTUBE_THUMBANAIL_QUALITY_BEST = "/0.jpg";
     String YOUTUBE_THUMBANAIL_QUALITY_LOW = "/1.jpg";
     String IMG_SIMILAR_ITEMS_POSTER_URL = "http://image.tmdb.org/t/p/w500";
-    String IMG_BASE_POSTER_URL = "http://image.tmdb.org/t/p/w342";
+    String IMG_BASE_POSTER_URL = "http://image.tmdb.org/t/p/w500";
     String IMG_BASE_DIALOG_POSTER_URL = "http://image.tmdb.org/t/p/w300";
     String IMG_BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/w780";
     String FACEBOOK_PROFILE_PIC_URL = "https://graph.facebook.com/v2.6/userid/picture?type=normal";

@@ -1,4 +1,4 @@
-package com.cinematics.santosh.networkmodule.pojos.constants;
+package com.cinematics.santosh.networkmodule.service.constants;
 
 public interface AppIntentConstants {
     // intent constants for the game module

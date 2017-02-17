@@ -1,11 +1,10 @@
-package com.cinematics.santosh.networkmodule.pojos.retrofitclient;
+package com.cinematics.santosh.networkmodule.service.retrofitclient;
 
-import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
 
 import java.io.IOException;
 
-import okhttp3.Call;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -13,7 +12,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
-import retrofit2.http.GET;
 
 /**
  * Created by 511470 on 2/12/17.

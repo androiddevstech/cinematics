@@ -1,4 +1,4 @@
-package com.cinematics.santosh.networkmodule.pojos.model;
+package com.cinematics.santosh.networkmodule.service.model;
 
 
 public class MovieRecommendationCreditModel {

@@ -1,16 +1,16 @@
-package com.cinematics.santosh.networkmodule.pojos.retrofitclient;
+package com.cinematics.santosh.networkmodule.service.retrofitclient;
 
-import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.CelebrityBioDataModel;
-import com.cinematics.santosh.networkmodule.pojos.model.CelebrityModel;
-import com.cinematics.santosh.networkmodule.pojos.model.GenericSearchResultsModel;
-import com.cinematics.santosh.networkmodule.pojos.model.GenreModel;
-import com.cinematics.santosh.networkmodule.pojos.model.ImageModel;
-import com.cinematics.santosh.networkmodule.pojos.model.MovieRecommendationCreditModel;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
-import com.cinematics.santosh.networkmodule.pojos.model.SeriesModel;
-import com.cinematics.santosh.networkmodule.pojos.model.TVRecommendationCreditsModel;
+import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.CelebrityBioDataModel;
+import com.cinematics.santosh.networkmodule.service.model.CelebrityModel;
+import com.cinematics.santosh.networkmodule.service.model.GenericSearchResultsModel;
+import com.cinematics.santosh.networkmodule.service.model.GenreModel;
+import com.cinematics.santosh.networkmodule.service.model.ImageModel;
+import com.cinematics.santosh.networkmodule.service.model.MovieRecommendationCreditModel;
+import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.service.model.SeriesModel;
+import com.cinematics.santosh.networkmodule.service.model.TVRecommendationCreditsModel;
 
 import java.io.IOException;
 
