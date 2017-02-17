@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.databinding.CommonFragmentItemBinding;
 import com.cinematics.santosh.cinematics.ui.ListFragmentController;
-import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.cinematics.util.ContentFilterUtil;
 import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
 
@@ -189,17 +189,9 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                     mOldResponse.results.addAll(response.body().results);
 
                     List<MoviesModel.Results> resultsList = mOldResponse.results;
-                    List<MoviesModel.Results> filteredList = new ArrayList<MoviesModel.Results>();
-                    for(int i=0 ; i< resultsList.size();i++){
-                        String releaseDate = resultsList.get(i).release_date;
-                        String year = releaseDate.substring(0, Math.min(releaseDate.length(), 4));
-                        if(year.equals("2017") && resultsList.get(i).original_language.equals("en")){
-                            filteredList.add(resultsList.get(i));
-                        }
-                    }
+                    List<MoviesModel.Results> upcomingMovies = ContentFilterUtil.getInstance().getUpcomingMovies(resultsList,true);
 
-//            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(upcomingMovies);
                     mAdapter.notifyItemRangeInserted(startIndex, totalItems);
                 }
 
