@@ -1,22 +1,17 @@
 package com.cinematics.santosh.cinematics.movies.moviedetails;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.R;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
-import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.service.model.TrailerModel;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

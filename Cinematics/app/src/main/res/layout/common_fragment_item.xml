@@ -8,7 +8,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Black"
+        android:background="@color/DimGray"
         tools:context=".movies.movies.MoviesFragment">
 
         <!-- TODO: Update blank fragment layout -->

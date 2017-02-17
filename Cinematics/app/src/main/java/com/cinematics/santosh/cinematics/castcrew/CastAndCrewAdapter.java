@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cinematics.santosh.cinematics.R;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesTVCastingModel;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.MoviesTVCastingModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

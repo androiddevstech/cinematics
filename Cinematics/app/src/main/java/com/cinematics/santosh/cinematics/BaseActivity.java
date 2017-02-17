@@ -6,10 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -17,14 +15,16 @@ import com.cinematics.santosh.cinematics.databinding.AppMainActivityBinding;
 import com.cinematics.santosh.cinematics.movies.FavoriteMoviesFragment;
 import com.cinematics.santosh.cinematics.movies.MoviesLaunchFragment;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesFragment;
-import com.cinematics.santosh.cinematics.tvseries.TVSeriesFragment;
+import com.cinematics.santosh.cinematics.tvseries.FavoriteTVSeriesFragment;
+import com.cinematics.santosh.cinematics.tvseries.TVSeriesLaunchFragment;
+import com.cinematics.santosh.cinematics.tvseries.tvseries.TVSeriesFragment;
 import com.cinematics.santosh.cinematics.ui.TabFragmentController;
 import com.cinematics.santosh.databasemodule.DatabaseConstants;
 import com.cinematics.santosh.databasemodule.userpreferences.UserPreferences;
-import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.GenreModel;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.CallbackWrapper;
+import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.service.model.GenreModel;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.RetrofitClient;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.networkwrappers.CallbackWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.HashMap;
@@ -36,10 +36,12 @@ import retrofit2.Callback;
 public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragment.OnFragmentInteractionListener,
         View.OnClickListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        TVSeriesFragment.OnFragmentInteractionListener,
+        TVSeriesLaunchFragment.OnFragmentInteractionListener,
         TabFragmentController.OnFragmentInteractionListener,
         MoviesFragment.OnFragmentInteractionListener,
-        FavoriteMoviesFragment.OnFragmentInteractionListener
+        FavoriteMoviesFragment.OnFragmentInteractionListener,
+        TVSeriesFragment.OnFragmentInteractionListener,
+        FavoriteTVSeriesFragment.OnFragmentInteractionListener
 
 {
 
@@ -80,10 +82,14 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         switch (item.getItemId()){
             case R.id.action_movies:
-                transaction.replace(R.id.movies_fragment_container,new MoviesLaunchFragment()).commit();
+                transaction.replace(R.id.movies_fragment_container,new MoviesLaunchFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
             case R.id.action_tvshows:
-                transaction.replace(R.id.movies_fragment_container,new TVSeriesFragment()).commit();
+                transaction.replace(R.id.movies_fragment_container,new TVSeriesLaunchFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
             case R.id.action_celeb:
                 break;

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sparks.techie.moviestation.MovieDetailsActivity">
+    tools:context="com.santosh.moviedb.MovieDetailsActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:layout_width="match_parent"

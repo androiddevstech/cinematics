@@ -10,18 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cinematics.santosh.cinematics.R;
-import com.cinematics.santosh.cinematics.ui.MoreInfoActivityController;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
+import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.TrailerModel;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 /**
- * Created by 511470 on 2/13/17.
+ * Created by santosh on 2/13/17.
  */
 
 public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.RecyclerViewHolder> {

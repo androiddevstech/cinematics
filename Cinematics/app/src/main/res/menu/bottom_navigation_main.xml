@@ -19,11 +19,11 @@
         android:icon="@drawable/ic_celebrities"
         android:title="Celebrities"
         app:showAsAction="ifRoom" />
-    <item
+   <!-- <item
         android:id="@+id/action_location"
         android:enabled="true"
         android:icon="@drawable/ic_location_on_white_24dp"
         android:title="Nearby"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />-->
 
 </menu>

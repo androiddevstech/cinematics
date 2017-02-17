@@ -1,6 +1,5 @@
 package com.cinematics.santosh.cinematics.ui;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Build;
@@ -16,12 +15,12 @@ import com.cinematics.santosh.cinematics.castcrew.CastAndCrewAdapter;
 import com.cinematics.santosh.cinematics.databinding.ActivityCommonInfoBinding;
 import com.cinematics.santosh.cinematics.movies.moviedetails.SimilarMoviesAdapter;
 import com.cinematics.santosh.cinematics.trailers.TrailerAdapter;
-import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesTVCastingModel;
-import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkActivity;
+import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.service.model.MoviesTVCastingModel;
+import com.cinematics.santosh.networkmodule.service.model.TrailerModel;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.networkwrappers.NetworkActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;

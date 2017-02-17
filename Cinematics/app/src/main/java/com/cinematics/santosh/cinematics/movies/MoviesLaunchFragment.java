@@ -4,15 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.enums.MovieDBNetworkAPIEnum;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesFragment;
 import com.cinematics.santosh.cinematics.ui.TabFragmentController;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
+import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,9 +78,10 @@ public class MoviesLaunchFragment extends TabFragmentController implements TabFr
 
     @Override
     protected int[] getTabDrawableIcon() {
-        return new int[]{R.drawable.ic_trending_up_white,
+        return new int[]{R.drawable.ic_theaters_white,
                 R.drawable.ic_movie_filter_white,
-                R.drawable.ic_favorite_border_white};
+                R.drawable.ic_trending_up_white
+                };
     }
 
 

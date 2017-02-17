@@ -1,7 +1,6 @@
 package com.cinematics.santosh.cinematics;
 
 import android.app.ActivityOptions;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -22,12 +21,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.cinematics.santosh.cinematics.Util.Constants;
 import com.cinematics.santosh.cinematics.Util.UriBuilderUtil;
 import com.cinematics.santosh.cinematics.Util.VolleyTon;
 import com.cinematics.santosh.cinematics.databinding.ActivityMainBinding;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesAdapter;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

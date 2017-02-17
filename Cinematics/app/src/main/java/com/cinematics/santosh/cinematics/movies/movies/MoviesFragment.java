@@ -2,24 +2,28 @@ package com.cinematics.santosh.cinematics.movies.movies;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.databinding.CommonFragmentItemBinding;
 import com.cinematics.santosh.cinematics.ui.ListFragmentController;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
+import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
+import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
+import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import javax.xml.transform.stream.StreamSource;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -55,8 +59,13 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
         mBinding = DataBindingUtil.inflate(inflater,R.layout.common_fragment_item,container,false);
         View view = mBinding.getRoot();
 
-        mBinding.swipeRefreshLayout.setColorSchemeColors(0xFFB71C1C, 0xFF1A237E, 0xFF2E7D32);
-        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.DarkOrange), 0xFF1A237E, 0xFF2E7D32);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),2);
+        mBinding.recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+//        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new MoviesAdapter(getContext(),mBinding.recyclerView,this);
         mBinding.recyclerView.setAdapter(mAdapter);
 
@@ -127,7 +136,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                             filteredList.add(resultsList.get(i));
                     }
 //            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setSimilarMoviesResponse(filteredList);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyDataSetChanged();
 
                 }
@@ -147,7 +156,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                     }
 
 //            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setSimilarMoviesResponse(filteredList);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyItemRangeInserted(startIndex, totalItems);
                 }
 
@@ -168,7 +177,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                         }
                     }
 //            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setSimilarMoviesResponse(filteredList);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyDataSetChanged();
 
                 }
@@ -190,7 +199,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                     }
 
 //            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setSimilarMoviesResponse(filteredList);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyItemRangeInserted(startIndex, totalItems);
                 }
 

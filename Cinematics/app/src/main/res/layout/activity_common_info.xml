@@ -13,8 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.sparks.techie.moviestation.MoreInfoActivity"
+        tools:context="com.santosh.moviedb.MoreInfoActivity"
         >
+
+
+
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -150,150 +153,224 @@
             tools:context="com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity"
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
-                <!--DESCRIPTION LAYOUT-->
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/programDescription"
-                    android:layout_margin="@dimen/text_margin"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/Black"
-                    />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/budgetText"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/Black"
-                    android:layout_marginTop="10dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/revenueText"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/Black"
-                    android:layout_marginTop="10dp"
-                    />
+                    <!--DESCRIPTION LAYOUT-->
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="@color/DarkOrange"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:alpha="0.15"
-                    android:layout_marginTop="10dp"
-                    />
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_view"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardUseCompatPadding="true"
+                        app:cardBackgroundColor="@color/white"
+                        android:elevation="15dp"
+                        app:cardElevation="4dp">
 
-                <!--TRAILERS LAYOUT-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/trailersTitle"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/DimGray"
-                    android:textStyle="bold"
-                    android:text="Trailers"
-                    android:textSize="18dp"
-                    android:layout_marginTop="10dp"
-                    />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/programDescriptionTitle"
+                                android:layout_margin="@dimen/text_margin"
+                                android:textColor="@color/DimGray"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:text="@string/content_description_title"
+                                />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/trailerRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/programDescription"
+                                android:layout_margin="@dimen/text_margin"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/Black"
+                                android:layout_marginTop="10dp"
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="@color/DarkOrange"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:alpha="0.15"
-                    android:layout_marginTop="10dp"
-                    />
+                                />
 
-                <!--CAST & CREW LAYOUT-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/budgetText"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/Black"
+                                android:layout_marginTop="10dp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/revenueText"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/Black"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="15dp"
+                                />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/castCrewTitle"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/DimGray"
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/cast_crew_layout_title"
-                    />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/castAndCrewRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    />
-
-             <!--   <Button
-                    android:layout_width="170dp"
-                    android:id="@+id/fullCastAndCrewButton"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/full_cast_and_crew_text"
-                    android:textAlignment="gravity"
-                    android:elegantTextHeight="true"
-                    android:clickable="true"
-                    android:textAllCaps="false"
-                    android:gravity="center_horizontal"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/DarkOrange"
-                    android:textColor="@color/White"/>-->
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="@color/DarkOrange"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:alpha="0.15"
-                    android:layout_marginTop="15dp"
-                    />
+                        </LinearLayout>
 
 
-                <!--SIMILAR MOVIES LAYOUT-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/similarMoviesText"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/DimGray"
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:layout_marginTop="15dp"
-                    />
+                    </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recommendationsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                     />
+                    <!--TRAILERS LAYOUT-->
 
-            </LinearLayout>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardView_trailerLayout"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardUseCompatPadding="true"
+                        app:cardBackgroundColor="@color/white"
+                        android:elevation="15dp"
+                        app:cardElevation="4dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/trailersTitle"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/DimGray"
+                                android:textStyle="bold"
+                                android:text="Trailers"
+                                android:textSize="18dp"
+                                android:layout_marginTop="10dp"
+                                />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/trailerRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                />
+
+                        </LinearLayout>
+
+
+
+                    </android.support.v7.widget.CardView>
+                    <!--CAST & CREW LAYOUT-->
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardview_castlayout"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardUseCompatPadding="true"
+                        app:cardBackgroundColor="@color/white"
+                        android:elevation="15dp"
+                        app:cardElevation="4dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/castCrewTitle"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/DimGray"
+                                android:textStyle="bold"
+                                android:textSize="18dp"
+                                android:layout_marginTop="15dp"
+                                android:text="@string/cast_crew_layout_title"
+                                />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/castAndCrewRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="15dp"
+                                />
+
+                            <!--   <Button
+                                   android:layout_width="170dp"
+                                   android:id="@+id/fullCastAndCrewButton"
+                                   android:layout_height="25dp"
+                                   android:layout_marginTop="20dp"
+                                   android:text="@string/full_cast_and_crew_text"
+                                   android:textAlignment="gravity"
+                                   android:elegantTextHeight="true"
+                                   android:clickable="true"
+                                   android:textAllCaps="false"
+                                   android:gravity="center_horizontal"
+                                   android:layout_gravity="center_horizontal"
+                                   android:background="@color/DarkOrange"
+                                   android:textColor="@color/White"/>-->
+
+
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <!--SIMILAR MOVIES LAYOUT-->
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardview_similarlayout"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardUseCompatPadding="true"
+                        app:cardBackgroundColor="@color/white"
+                        android:elevation="15dp"
+                        app:cardElevation="4dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/similarMoviesText"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/DimGray"
+                                android:textStyle="bold"
+                                android:textSize="18dp"
+                                android:layout_marginTop="15dp"
+                                />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recommendationsRecyclerView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
 
 
         </android.support.v4.widget.NestedScrollView>

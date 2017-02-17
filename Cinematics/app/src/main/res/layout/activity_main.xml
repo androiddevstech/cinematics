@@ -11,7 +11,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.sparks.techie.moviestation.FabActivity">
+        tools:context="com.santosh.moviedb.FabActivity">
 
         <FrameLayout
             android:id="@+id/movies_fragment_container"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context="com.sparks.techie.moviestation.FabActivity"
+            tools:context="com.santosh.moviedb.FabActivity"
             tools:showIn="@layout/activity_fab">
 
             <LinearLayout

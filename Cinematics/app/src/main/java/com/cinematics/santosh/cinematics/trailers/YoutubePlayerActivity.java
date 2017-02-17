@@ -1,28 +1,14 @@
 package com.cinematics.santosh.cinematics.trailers;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.Util.Constants;
-import com.cinematics.santosh.cinematics.Util.UriBuilderUtil;
-import com.cinematics.santosh.cinematics.Util.VolleyTon;
-import com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity;
-import com.cinematics.santosh.networkmodule.pojos.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
-import com.cinematics.santosh.networkmodule.pojos.model.MoviesModel;
-import com.cinematics.santosh.networkmodule.pojos.model.TrailerModel;
+import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.gson.Gson;
 
 import com.cinematics.santosh.cinematics.Model.MovieDetails;
 import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;

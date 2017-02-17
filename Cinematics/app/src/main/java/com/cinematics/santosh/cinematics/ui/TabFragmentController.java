@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,8 @@ import com.cinematics.santosh.cinematics.BaseActivity;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.databinding.TabFragmentLayoutBinding;
 import com.cinematics.santosh.cinematics.ui.util.BaseSlidingTabs;
-import com.cinematics.santosh.networkmodule.pojos.model.GenericSearchResultsModel;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkFragment;
+import com.cinematics.santosh.networkmodule.service.model.GenericSearchResultsModel;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.networkwrappers.NetworkFragment;
 
 import java.util.List;
 import java.util.WeakHashMap;

@@ -5,9 +5,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cinematics.santosh.cinematics.enums.MovieDBNetworkAPIEnum;
 import com.cinematics.santosh.cinematics.interfaces.LoadMore;
-import com.cinematics.santosh.networkmodule.pojos.constants.AppIntentConstants;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.RetrofitClient;
-import com.cinematics.santosh.networkmodule.pojos.retrofitclient.networkwrappers.NetworkFragment;
+import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.RetrofitClient;
+import com.cinematics.santosh.networkmodule.service.retrofitclient.networkwrappers.NetworkFragment;
 
 /**
  * Created by santosh on 2/10/17.
