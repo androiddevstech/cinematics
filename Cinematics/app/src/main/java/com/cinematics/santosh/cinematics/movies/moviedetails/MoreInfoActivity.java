@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.cinematics.santosh.cinematics.ui.MoreInfoActivityController;
+import com.cinematics.santosh.cinematics.util.DateFormatter;
 import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
 import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
@@ -38,12 +39,13 @@ public class MoreInfoActivity extends MoreInfoActivityController<MovieRecommenda
         String genre = APIConstants.getInstance().getMovieGenreList(results.genre_ids, this);
 
         String releaseDate = results.release_date;
+        String formattedData = DateFormatter.getInstance().releaseDateFormatter(releaseDate);
 
-        super.initActivity(results.title,
+        super.initActivityForMovies(results.title,
                 results.vote_count,
                 results.vote_average,
                 results.overview,
-                releaseDateFormatter(releaseDate),
+                formattedData,
                 genre,
                 results.poster_path != null ? results.poster_path : results.backdrop_path,
                 results.backdrop_path != null ? results.backdrop_path : results.poster_path,

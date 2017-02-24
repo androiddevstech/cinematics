@@ -33,7 +33,7 @@
 
 
                 <ImageView
-                    android:id="@+id/movieDetailsBackdrop"
+                    android:id="@+id/seriesDetailsBackdrop"
                     android:layout_width="fill_parent"
                     android:layout_height="230dp"
                     app:layout_collapseMode="parallax"
@@ -46,7 +46,7 @@
                     android:layout_height="140dp"
                     android:scaleType="centerCrop"
                     android:layout_marginStart="14dp"
-                    android:id="@+id/movieDetailsPoster"
+                    android:id="@+id/seriesDetailsPoster"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:transitionName="selectedMovie"
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/programTitle"
+                    android:id="@+id/seriesProgramTitle"
                     android:singleLine="true"
                     android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
                     android:text="Hello"
@@ -67,23 +67,23 @@
                     />
 
                 <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/genreText"
-                android:paddingRight="10dp"
-                android:textSize="12sp"
-                android:textColor="@color/DarkGray"
-                android:text="Genre: Action, Comedy"
-                android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
-                android:layout_marginTop="@dimen/moreInfo_content_description_margin_top"
-                />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/seriesGenreText"
+                    android:paddingRight="10dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/DarkGray"
+                    android:text="Genre: Action, Comedy"
+                    android:layout_marginLeft="@dimen/moreInfo_content_title_margin_left"
+                    android:layout_marginTop="@dimen/moreInfo_content_description_margin_top"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/releaseDate"
+                    android:id="@+id/seriesReleaseDate"
                     android:paddingRight="10dp"
                     android:textSize="12sp"
                     android:textColor="@color/DarkGray"
@@ -92,7 +92,7 @@
                     android:layout_marginTop="285dp"
                     />
                 <TextView
-                    android:id="@+id/ratingTextview"
+                    android:id="@+id/seriesratingTextview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -105,7 +105,7 @@
                     />
 
                 <RatingBar
-                    android:id="@+id/ratingBar"
+                    android:id="@+id/seriesRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/title"
@@ -120,7 +120,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/totalRatingCountText"
+                    android:id="@+id/seriesTotalRatingCountText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -131,7 +131,7 @@
                     />
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
+                    android:id="@+id/seriestoolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"

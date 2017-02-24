@@ -27,4 +27,6 @@
     <dimen name="moreInfo_content_description_margin_top">265dp</dimen>
     <dimen name="moreInfo_content_title_margin_top">240dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="search_icon_padding">12dp</dimen>
+    <dimen name="search_view_text_padding">65dp</dimen>
 </resources>

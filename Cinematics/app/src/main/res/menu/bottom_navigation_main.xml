@@ -14,10 +14,10 @@
         android:title="TV Shows"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_celeb"
+        android:id="@+id/action_search"
         android:enabled="true"
-        android:icon="@drawable/ic_celebrities"
-        android:title="Celebrities"
+        android:icon="@drawable/ic_search_white"
+        android:title="Search"
         app:showAsAction="ifRoom" />
    <!-- <item
         android:id="@+id/action_location"

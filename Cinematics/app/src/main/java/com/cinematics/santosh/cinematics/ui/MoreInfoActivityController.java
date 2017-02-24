@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.castcrew.CastAndCrewAdapter;
 import com.cinematics.santosh.cinematics.databinding.ActivityCommonInfoBinding;
@@ -31,7 +32,7 @@ import java.util.List;
 import retrofit2.Call;
 
 /**
- * Created by 511470 on 2/10/17.
+ * Created by santosh on 2/10/17.
  */
 
 public abstract class MoreInfoActivityController<APIResponseClass> extends NetworkActivity<APIResponseClass> implements
@@ -42,7 +43,7 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
     private ActivityCommonInfoBinding mBinding;
     protected String mYouTubeKey;
 
-    protected void initActivity(final String title,
+    protected void initActivityForMovies(final String title,
                                 int totalCount,
                                 float rating,
                                 String programDescription,
@@ -62,10 +63,10 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
 
         mBinding.movieDetailsBackdrop.requestLayout();
         mBinding.movieDetailsBackdrop.getLayoutParams().height = (int) Math.ceil(APIConstants.getScreenWidthPixels(this) * imageAspectRatio);
-        Picasso.with(this)
+        Glide.with(this)
                 .load(NetworkConstants.IMG_BASE_BACKDROP_URL + backdropPath)
                 .into(mBinding.movieDetailsBackdrop);
-        Picasso.with(this)
+        Glide.with(this)
                 .load(NetworkConstants.IMG_BASE_POSTER_URL + posterPath)
                 .into(mBinding.movieDetailsPoster);
 
@@ -84,6 +85,8 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
         mBinding.releaseDate.setText(releaseDate);
         mBinding.genreText.setText(genre);
         if(Float.toString(rating).equalsIgnoreCase("0.0")){
+            mBinding.ratingTextview.setVisibility(View.GONE);
+            mBinding.ratingTextview.setTextSize(14.0f);
             mBinding.ratingTextview.setText("Rating N/A");
             mBinding.totalRatingCountText.setVisibility(View.GONE);
             mBinding.ratingBar.setVisibility(View.GONE);
@@ -137,9 +140,6 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
 
     protected abstract void establishNetworkCall();
 
-
-
-
     @Override
     protected void onNetworkFailure(Call<APIResponseClass> call, Throwable t) {
 
@@ -155,19 +155,6 @@ public abstract class MoreInfoActivityController<APIResponseClass> extends Netwo
                 establishNetworkCall();
 
         }
-    }
-
-    public String releaseDateFormatter(String releaseDate){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date formattedDate = null;
-        try {
-            formattedDate = simpleDateFormat.parse(releaseDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        simpleDateFormat.applyPattern("MMM dd yyyy");
-
-        return simpleDateFormat.format(formattedDate);
     }
 
     public void showLimitedCastAndCrewView(List<MoviesTVCastingModel.Cast> castingList){

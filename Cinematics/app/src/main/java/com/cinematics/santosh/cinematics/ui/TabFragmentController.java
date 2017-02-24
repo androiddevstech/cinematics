@@ -49,12 +49,12 @@ public abstract class TabFragmentController extends NetworkFragment<GenericSearc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
         mFragmentList = getViewPagerFragmentList();
         mToolbarTitle = getSearchAndToolbarTitle();
         mFragmentMap = new WeakHashMap<>(mFragmentList.size());
         setHasOptionsMenu(true);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +62,7 @@ public abstract class TabFragmentController extends NetworkFragment<GenericSearc
 
         mBinding = DataBindingUtil.inflate(inflater,R.layout.tab_fragment_layout, container,false);
         View view = mBinding.getRoot();
+
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mBinding.toolbar);
         mBinding.viewPager.setOffscreenPageLimit(mFragmentList.size());
@@ -91,7 +92,7 @@ public abstract class TabFragmentController extends NetworkFragment<GenericSearc
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        mParentActivity = ((BaseActivity)getActivity());
+            mParentActivity = ((BaseActivity)getActivity());
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -118,8 +119,7 @@ public abstract class TabFragmentController extends NetworkFragment<GenericSearc
 
     @Override
     public void onPageSelected(int position) {
-        mBinding.toolbar.setTitle(mToolbarTitle[position]);
-
+            mBinding.toolbar.setTitle(mToolbarTitle[position]);
     }
 
     @Override

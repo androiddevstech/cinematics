@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.service.model.MoviesTVCastingModel;
@@ -46,12 +47,12 @@ public class CastAndCrewAdapter extends RecyclerView.Adapter<CastAndCrewAdapter.
         String profilePath = holder.castingResults.profile_path;
         if(profilePath != null){
             holder.placeHolder.setVisibility(View.GONE);
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(NetworkConstants.IMG_BASE_POSTER_URL + holder.castingResults.profile_path)
                     .into(holder.castImage);
         }else {
 
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(R.drawable.ic_account_circle_black)
                     .into(holder.castImage);
 

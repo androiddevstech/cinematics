@@ -38,6 +38,16 @@
         <item>My Favourites</item>
         <item>Search for TV Series…</item>
     </string-array>
+
+    <string-array name="search_toolbar_hint_array">
+        <item>Search for Movies...</item>
+        <item>Search for TV Shows...</item>
+        <item>Search for Actors...</item>
+    </string-array>
+
+
     <string name="title_activity_full_cast_and_crew">FullCastAndCrewActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

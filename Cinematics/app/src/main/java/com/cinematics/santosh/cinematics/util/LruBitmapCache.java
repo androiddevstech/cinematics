@@ -1,4 +1,4 @@
-package com.cinematics.santosh.cinematics.Util;
+package com.cinematics.santosh.cinematics.util;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;

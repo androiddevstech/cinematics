@@ -3,7 +3,7 @@ package com.cinematics.santosh.cinematics.trailers;
 import android.os.Bundle;
 
 import com.cinematics.santosh.cinematics.R;
-import com.cinematics.santosh.cinematics.Util.Constants;
+import com.cinematics.santosh.cinematics.util.Constants;
 import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;

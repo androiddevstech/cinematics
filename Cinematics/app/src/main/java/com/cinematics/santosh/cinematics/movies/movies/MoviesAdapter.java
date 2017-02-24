@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.LaunchActivity;
 import com.cinematics.santosh.cinematics.R;
 
@@ -29,7 +30,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 /**
- * Created by santosh on 2/9/17.
+ * Created by  on 2/9/17.
  */
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> implements View.OnClickListener {
@@ -37,6 +38,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private List<MoviesModel.Results> mMoviesList;
     private Context mContext;
     private LinearLayoutManager mLinearLayoutManager;
+    private MoviesModel mMoviesResponse;
 
 
     private ArrayList<ResultsNowPlaying> resultsNowPlaying;
@@ -56,6 +58,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         loadMoreListener = onLoadMoreListener;
     }
 
+
+    void setNewAPIResponse(MoviesModel response) {
+        mMoviesResponse = response;
+    }
 
     public void setMoviesResponse(List<MoviesModel.Results> results) {
         this.mMoviesList = results;
@@ -77,13 +83,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.results = mMoviesList.get(position);
-        Picasso.with(mContext)
-                .load(holder.results.poster_path != null ? NetworkConstants.IMG_BASE_POSTER_URL + holder.results.poster_path :
-                        NetworkConstants.IMG_BASE_BACKDROP_URL + holder.results.backdrop_path)
+
+        MoviesModel.Results results = mMoviesResponse.results.get(position);
+        holder.results = results;
+
+
+//        holder.results = mMoviesList.get(position);
+        Glide.with(mContext)
+                .load(results.poster_path != null ? NetworkConstants.IMG_BASE_POSTER_URL + results.poster_path :
+                        NetworkConstants.IMG_BASE_BACKDROP_URL + results.backdrop_path)
                 .into(holder.backdropImage);
-        holder.title.setText(holder.results.title);
-        holder.genreTextView.setText(APIConstants.getInstance().getMovieGenreList(holder.results.genre_ids, mContext));
+        holder.title.setText(results.title);
+        List<Integer> genreIds = holder.results.genre_ids;
+        holder.genreTextView.setText(/*APIConstants.getInstance().getMovieGenreList(genreIds, mContext)*/results.original_language);
         holder.addToFavsImg.setOnClickListener(this);
 
         ObjectAnimator fade = ObjectAnimator.ofFloat(holder.backGroundlayer, View.ALPHA, 1f,.3f);
@@ -91,7 +103,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         fade.setInterpolator(new LinearInterpolator());
         fade.start();
 
-        if (position + 1 >= mLinearLayoutManager.getItemCount() && !loading && mMoviesList.size() < 1500) {
+        if (position + 1 >= mLinearLayoutManager.getItemCount() && !loading && mMoviesResponse.results.size() < mMoviesResponse.total_results) {
             loading = true;
             if(loadMoreListener != null){
                 loadMoreListener.onLoadMore();
@@ -101,7 +113,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mMoviesList != null ? mMoviesList.size() : 0;
+        return mMoviesResponse != null ? mMoviesResponse.results.size() : 0;
     }
 
     public void updateNowPlaying(ArrayList<ResultsNowPlaying> resultsNowPlaying){

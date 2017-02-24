@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,15 +14,10 @@ import android.view.ViewGroup;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.databinding.CommonFragmentItemBinding;
 import com.cinematics.santosh.cinematics.ui.ListFragmentController;
-import com.cinematics.santosh.cinematics.util.ContentFilterUtil;
-import com.cinematics.santosh.networkmodule.service.constants.AppIntentConstants;
+import com.cinematics.santosh.cinematics.util.DateFormatter;
 import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import javax.xml.transform.stream.StreamSource;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -35,6 +29,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
     private MoviesAdapter mAdapter;
     private int mPageNumber;
     private MoviesModel mOldResponse;
+    private List<MoviesModel> mOldeResponseList;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -80,15 +75,18 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
 
         switch (mApiType) {
             case API_UPCOMING_MOVIES:
-                mApiClient.getUpcomingMovies(pageNumber).enqueue(this);
+
+                mApiClient.getUpcomingMovies(pageNumber, DateFormatter.getInstance().getCurrentDate()).enqueue(this);
                 break;
 
             case API_POPULAR_MOVIES:
+
                 mApiClient.getPopularMovies(pageNumber).enqueue(this);
                 break;
 
-            case API_SEARCH_MOVIE:
-                mApiClient.getMovieSearchResults(getArguments().getString(AppIntentConstants.QUERY_STRING), pageNumber).enqueue(this);
+            case API_MOVIES_IN_THEATRES:
+
+                mApiClient.getUpcomingMovies(pageNumber, DateFormatter.getInstance().getCurrentDate()).enqueue(this);
                 break;
 
         }
@@ -123,6 +121,30 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
     @Override
     protected void onNetworkResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
         //  CALLED ON SWIPE TO REFRESH OR FIRST TIME LAUNCH
+        if (mOldResponse == null || mPageNumber == 1) {
+            mOldResponse = response.body();
+            mAdapter.setNewAPIResponse(mOldResponse);
+            mAdapter.notifyDataSetChanged();
+
+        }
+        //  HANDLES PAGINATION REQUESTS
+        else {
+            int startIndex = mOldResponse.results.size(), totalItems = response.body().results.size();
+            mOldResponse.page = response.body().page;
+            mOldResponse.total_results = response.body().total_results;
+            mOldResponse.results.addAll(response.body().results);
+            mAdapter.setNewAPIResponse(mOldResponse);
+            mAdapter.notifyItemRangeInserted(startIndex, totalItems);
+        }
+
+        mBinding.nowPlayingProgressBar.setVisibility(View.GONE);
+        mBinding.swipeRefreshLayout.setRefreshing(false);
+        mAdapter.setLoaded();
+    }
+
+   /* @Override
+    protected void onNetworkResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
+        //  CALLED ON SWIPE TO REFRESH OR FIRST TIME LAUNCH
         switch (mApiType){
             case API_POPULAR_MOVIES:
 
@@ -135,7 +157,6 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                         String year = releaseDate.substring(0, Math.min(releaseDate.length(), 4));
                             filteredList.add(resultsList.get(i));
                     }
-//            mAdapter.setNewAPIResponse(mOldResponse);
                     ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyDataSetChanged();
 
@@ -155,7 +176,6 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                             filteredList.add(resultsList.get(i));
                     }
 
-//            mAdapter.setNewAPIResponse(mOldResponse);
                     ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
                     mAdapter.notifyItemRangeInserted(startIndex, totalItems);
                 }
@@ -169,15 +189,8 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                     mOldResponse = response.body();
                     List<MoviesModel.Results> resultsList = mOldResponse.results;
                     List<MoviesModel.Results> filteredList = new ArrayList<MoviesModel.Results>();
-                    for(int i=0 ; i< resultsList.size();i++){
-                        String releaseDate = resultsList.get(i).release_date;
-                        String year = releaseDate.substring(0, Math.min(releaseDate.length(), 4));
-                        if(year.equals("2017")){
-                            filteredList.add(resultsList.get(i));
-                        }
-                    }
-//            mAdapter.setNewAPIResponse(mOldResponse);
-                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(filteredList);
+                    List<MoviesModel.Results> upcomingMovies = ContentFilterUtil.getInstance().getUpcomingMovies(resultsList,true);
+                    ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(upcomingMovies);
                     mAdapter.notifyDataSetChanged();
 
                 }
@@ -189,7 +202,8 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
                     mOldResponse.results.addAll(response.body().results);
 
                     List<MoviesModel.Results> resultsList = mOldResponse.results;
-                    List<MoviesModel.Results> upcomingMovies = ContentFilterUtil.getInstance().getUpcomingMovies(resultsList,true);
+                    List<MoviesModel.Results> upcomingMovies = ContentFilterUtil.getInstance().getUpcomingMovies(resultsList,true
+                    );
 
                     ((MoviesAdapter) (mBinding.recyclerView.getAdapter())).setMoviesResponse(upcomingMovies);
                     mAdapter.notifyItemRangeInserted(startIndex, totalItems);
@@ -203,7 +217,7 @@ public class MoviesFragment extends ListFragmentController<MoviesModel> {
         mBinding.nowPlayingProgressBar.setVisibility(View.GONE);
         mBinding.swipeRefreshLayout.setRefreshing(false);
         mAdapter.setLoaded();
-    }
+    }*/
 
     @Override
     protected void onNetworkFailure(Call<MoviesModel> call, Throwable t) {

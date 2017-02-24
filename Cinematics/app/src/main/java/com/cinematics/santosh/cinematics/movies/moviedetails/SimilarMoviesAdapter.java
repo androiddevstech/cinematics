@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
 import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
@@ -43,7 +44,7 @@ public class SimilarMoviesAdapter extends RecyclerView.Adapter<SimilarMoviesAdap
     @Override
     public void onBindViewHolder(SimilarMoviesAdapter.RecyclerViewHolder holder, int position) {
         holder.results = mMoviesList.get(position);
-        Picasso.with(mContext)
+        Glide.with(mContext)
                 .load(NetworkConstants.IMG_SIMILAR_ITEMS_POSTER_URL + mMoviesList.get(position).poster_path)
                 .placeholder(R.drawable.now_playing_place_holder)
                 .error(R.drawable.now_playing_place_holder)

@@ -37,5 +37,17 @@ public class ContentFilterUtil {
         return filteredList;
     }
 
+    public List<MoviesModel.Results> filterMoviesByLanguage(final List<MoviesModel.Results> mMoviesList, String language) {
+
+        List<MoviesModel.Results> filteredList = new ArrayList<MoviesModel.Results>();
+
+        for(MoviesModel.Results mResults : mMoviesList){
+            if(language.equalsIgnoreCase(mResults.original_language)){
+                filteredList.add(mResults);
+            }
+        }
+        return filteredList;
+    }
+
 
 }

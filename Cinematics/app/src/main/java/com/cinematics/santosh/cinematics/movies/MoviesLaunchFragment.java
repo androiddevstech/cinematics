@@ -66,7 +66,10 @@ public class MoviesLaunchFragment extends TabFragmentController implements TabFr
         fragment.setArguments(bundle);
         mFragmentList.add(fragment);
 
-        fragment = new FavoriteMoviesFragment();
+        bundle = new Bundle();
+        bundle.putSerializable(AppIntentConstants.API_REQUEST, MovieDBNetworkAPIEnum.API_MOVIES_IN_THEATRES);
+        fragment = new MoviesFragment();
+        fragment.setArguments(bundle);
         mFragmentList.add(fragment);
         return mFragmentList;
     }
