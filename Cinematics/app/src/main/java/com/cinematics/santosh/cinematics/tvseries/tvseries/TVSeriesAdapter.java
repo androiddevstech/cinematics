@@ -12,21 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.cinematics.santosh.cinematics.LaunchActivity;
-import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 import com.cinematics.santosh.cinematics.R;
 import com.cinematics.santosh.cinematics.interfaces.LoadMore;
-import com.cinematics.santosh.cinematics.movies.movies.MoviesAdapter;
 import com.cinematics.santosh.cinematics.tvseries.tvseriesmoreinfo.TVSeriesMoreInfoActivity;
 import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
 import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
-import com.cinematics.santosh.networkmodule.service.model.SeriesDetailModel;
 import com.cinematics.santosh.networkmodule.service.model.SeriesModel;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 511470 on 2/16/17.
@@ -115,7 +106,7 @@ public class TVSeriesAdapter extends RecyclerView.Adapter<TVSeriesAdapter.Recycl
 
         @Override
         public void onClick(View view) {
-            //TODO: Series moreinfo goes here
+            //TODO: Series moreinfo goes here, For initial commit of the branch
             TVSeriesMoreInfoActivity.startActivityIntent(context,results);
         }
     }
