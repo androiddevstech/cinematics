@@ -14,20 +14,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cinematics.santosh.cinematics.LaunchActivity;
+import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 import com.cinematics.santosh.cinematics.R;
+import com.cinematics.santosh.cinematics.interfaces.LoadMore;
+import com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity;
+import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
+import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
-import com.cinematics.santosh.cinematics.interfaces.LoadMore;
-import com.cinematics.santosh.cinematics.movies.moviedetails.MoreInfoActivity;
-import com.cinematics.santosh.networkmodule.service.constants.APIConstants;
-import com.cinematics.santosh.networkmodule.service.constants.NetworkConstants;
-import com.cinematics.santosh.networkmodule.service.model.MoviesModel;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by  on 2/9/17.
@@ -152,6 +147,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
+            view.setTransitionName("selectedContentTransition");
+//            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation()
             MoreInfoActivity.startActivityIntent(context,results);
         }
     }

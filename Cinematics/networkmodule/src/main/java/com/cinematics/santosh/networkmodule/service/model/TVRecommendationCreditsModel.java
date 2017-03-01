@@ -5,4 +5,5 @@ public class TVRecommendationCreditsModel {
     public SeriesModel recommendations;
     public MoviesTVCastingModel credits;
     public TrailerModel videos;
+    public SeriesDetailModel seriesDetailModel;
 }

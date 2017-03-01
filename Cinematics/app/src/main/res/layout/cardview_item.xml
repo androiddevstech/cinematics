@@ -45,7 +45,7 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginStart="13dp"
                 android:scaleType="centerCrop"
-                android:transitionName="selectedMovie" />
+                android:transitionName="selectedContentTransition" />
 
 
             <ImageView

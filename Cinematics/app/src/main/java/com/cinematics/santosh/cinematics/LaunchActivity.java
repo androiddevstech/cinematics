@@ -9,9 +9,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -21,17 +21,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.cinematics.santosh.cinematics.Util.UriBuilderUtil;
-import com.cinematics.santosh.cinematics.Util.VolleyTon;
+import com.cinematics.santosh.cinematics.Model.NowPlaying;
+import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 import com.cinematics.santosh.cinematics.databinding.ActivityMainBinding;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesAdapter;
+import com.cinematics.santosh.cinematics.util.UriBuilderUtil;
+import com.cinematics.santosh.cinematics.util.VolleyTon;
 import com.cinematics.santosh.networkmodule.service.retrofitclient.RetrofitClient;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-
-import com.cinematics.santosh.cinematics.Model.NowPlaying;
-import com.cinematics.santosh.cinematics.Model.ResultsNowPlaying;
 
 public class LaunchActivity extends AppCompatActivity {
 

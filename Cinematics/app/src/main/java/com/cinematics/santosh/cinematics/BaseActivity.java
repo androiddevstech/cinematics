@@ -1,13 +1,14 @@
 package com.cinematics.santosh.cinematics;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,6 +16,7 @@ import com.cinematics.santosh.cinematics.databinding.AppMainActivityBinding;
 import com.cinematics.santosh.cinematics.movies.FavoriteMoviesFragment;
 import com.cinematics.santosh.cinematics.movies.MoviesLaunchFragment;
 import com.cinematics.santosh.cinematics.movies.movies.MoviesFragment;
+import com.cinematics.santosh.cinematics.search.SearchLaunchFragment;
 import com.cinematics.santosh.cinematics.tvseries.FavoriteTVSeriesFragment;
 import com.cinematics.santosh.cinematics.tvseries.TVSeriesLaunchFragment;
 import com.cinematics.santosh.cinematics.tvseries.tvseries.TVSeriesFragment;
@@ -41,7 +43,8 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
         MoviesFragment.OnFragmentInteractionListener,
         FavoriteMoviesFragment.OnFragmentInteractionListener,
         TVSeriesFragment.OnFragmentInteractionListener,
-        FavoriteTVSeriesFragment.OnFragmentInteractionListener
+        FavoriteTVSeriesFragment.OnFragmentInteractionListener,
+        SearchLaunchFragment.OnFragmentInteractionListener
 
 {
 
@@ -91,7 +94,13 @@ public class BaseActivity extends AppCompatActivity implements MoviesLaunchFragm
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;
-            case R.id.action_celeb:
+            case R.id.action_search:
+                Intent intent = new Intent(BaseActivity.this, SearchBaseActivity.class);
+                startActivity(intent);
+                /*DateFormatter.getInstance().setInSearchView(true);
+                transaction.replace(R.id.movies_fragment_container,new SearchLaunchFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();*/
                 break;
         }
         return true;

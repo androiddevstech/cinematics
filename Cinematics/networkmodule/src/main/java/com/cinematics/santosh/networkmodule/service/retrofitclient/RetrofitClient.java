@@ -86,14 +86,39 @@ public class RetrofitClient implements Interceptor {
 
         // MOVIES       --------------------------------------------------------------------------------------
 
-        @GET("movie/upcoming")
-        Call<MoviesModel> getUpcomingMovies(@Query("page") int page);
+        @GET("discover/movie?" /*+
+                "primary_release_date.gte=2017-02-22" +
+                "&primary_release_date.lte=2017-03-03" */+
+                "&sort_by=release_date.desc" +
+                "release_date.gte=2000"+
+                "&with_original_language=en" +
+                "&with_release_type=3" +
+                "&region=US")
+        Call<MoviesModel> getUpcomingMovies(@Query("page") int page,
+                                            @Query("2017-01-01") String todaysDate);
 
         @GET("movie/now_playing")
         Call<MoviesModel> getNowPlayingMovies(@Query("page") int page);
 
-        @GET("movie/popular")
-        Call<MoviesModel> getPopularMovies(@Query("page") int page);
+        @GET("discover/movie?" +
+                "sort_by=release_date.desc" +
+                "&with_original_language=te" +
+                "&with_release_type=3" +
+                "&primary_release_date.lte=2016-02-03" +
+                "&region=US&with_original_language=en" +
+                "&vote_average.gte=6" +
+                "&sort_by=vote_count.desc" +
+                "&with_release_type=4")
+        Call<MoviesModel> getPopularMovies(@Query ("page") int page);
+
+
+
+        @GET("discover/movie?primary_release_date.gte=2017-03-04" +
+                "&primary_release_date.lte=2017-03-18" +
+                "&sort_by=release_date.desc" +
+                "&with_original_language=en" +
+                "&with_release_type=3")
+        Call<MoviesModel> getFrenchMovies(@Query("page") int page);
 
         @GET("movie/{movie_id}?append_to_response=recommendations,credits,videos")
         Call<MovieRecommendationCreditModel> getMovieDetails(@Path("movie_id") int movieId);
@@ -118,6 +143,9 @@ public class RetrofitClient implements Interceptor {
 
         @GET("tv/top_rated")
         Call<SeriesModel> getTopRatedTVSeries(@Query("page") int page);
+
+        @GET("/tv/{tv_id}")
+        Call<SeriesModel> getSeriesDetails(@Path("tv_id") int tvId);
 
         @GET("tv/{tv_id}?append_to_response=recommendations,credits,videos")
         Call<TVRecommendationCreditsModel> getTVSeriesDetails(@Path("tv_id") int tvId);
